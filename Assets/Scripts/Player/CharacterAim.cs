@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static GameAssets;
 
-public class CharactrerAim : MonoBehaviour
+public class CharacterAim : MonoBehaviour
 {
     #region Variables
     public Transform firePoint;
