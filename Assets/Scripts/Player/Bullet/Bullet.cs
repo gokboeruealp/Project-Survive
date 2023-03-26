@@ -1,3 +1,4 @@
+using GokboerueTools;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -8,6 +9,7 @@ public class Bullet : MonoBehaviour
     private Collider2D col;
 
     [SerializeField] private float damage = 40;
+    [SerializeField] private float lifeTime = 3f;
 
     private void Awake()
     {
@@ -17,7 +19,7 @@ public class Bullet : MonoBehaviour
 
     private void OnEnable()
     {
-        Invoke("DestroyBullet", 3f);
+        Invoke("DestroyBullet", lifeTime);
     }
 
     private void OnDisable()

@@ -1,14 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using static GameAssets;
+using static GokboerueTools.GameAssets;
+using GokboerueTools;
 
 public class PopupTextScript : MonoBehaviour
 {
     public static PopupTextScript Create(Vector3 position, string text, Color color)
     {
-        Transform textPopupTransform = GameAssets.GetObjectFromPool(PrefabNames.PopupText, position, Quaternion.identity).transform;
+        Transform textPopupTransform = GetObjectFromPool(AssetData.PopupText, position, Quaternion.identity).transform;
 
         PopupTextScript popupText = textPopupTransform.GetComponent<PopupTextScript>();
         popupText.Setup(text, color);
@@ -64,7 +63,7 @@ public class PopupTextScript : MonoBehaviour
 
             if (textColor.a < 0)
             {
-                GameAssets.ReturnObjectToPool(gameObject);
+                ReturnObjectToPool(gameObject);
             } 
         }
     }

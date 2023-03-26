@@ -1,6 +1,6 @@
+using GokboerueTools;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using static GameAssets;
+using static GokboerueTools.GameAssets;
 
 public class CharacterAim : MonoBehaviour
 {
@@ -18,9 +18,11 @@ public class CharacterAim : MonoBehaviour
     #region Input Methods
     private void OnFire()
     {
-        Transform bullet = GameAssets.GetObjectFromPool(PrefabNames.Bullet, firePoint.position, firePoint.rotation).transform;
+        Transform bullet = GetObjectFromPool(AssetData.Bullet, firePoint.position, firePoint.rotation).transform;
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(firePoint.up * 5f, ForceMode2D.Impulse);
+
+        Gokboerue.GetGameManager();
     }
 
     private void OnLook()

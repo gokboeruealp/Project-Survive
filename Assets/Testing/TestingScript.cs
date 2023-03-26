@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
+using GokboerueTools;
 using UnityEngine;
 
 public class TestingScript : MonoBehaviour
 {
-    //only use Gokboerue class
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
