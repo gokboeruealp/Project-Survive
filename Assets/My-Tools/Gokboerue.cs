@@ -12,9 +12,9 @@ namespace GokboerueTools
             return Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
 
-        public static void CreatePopupText(Vector2 position, string text)
+        public static void CreatePopupText(Vector2 position, string text, Color color)
         {
-            PopupTextScript.Create(Gokboerue.G_GetMousePosition(), text, Color.white);
+            PopupTextScript.Create(G_GetMousePosition(), text, color);
         }
         #endregion
 
@@ -64,7 +64,7 @@ namespace GokboerueTools
 
         public static GameAssets GetGameAssets()
         {
-            return GameAssets.i;
+            return i;
         }
         #endregion
     }

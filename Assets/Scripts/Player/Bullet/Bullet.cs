@@ -29,6 +29,7 @@ public class Bullet : MonoBehaviour
 
     private void DestroyBullet()
     {
+        rb.velocity = Vector2.zero;
         GameAssets.ReturnObjectToPool(gameObject);
     }
 
