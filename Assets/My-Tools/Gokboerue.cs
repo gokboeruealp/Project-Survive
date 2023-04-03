@@ -67,5 +67,57 @@ namespace GokboerueTools
             return i;
         }
         #endregion
+
+        #region Delay
+        public static void Delay(float delay, System.Action action)
+        {
+            i.StartCoroutine(DelayCoroutine(delay, action));
+        }
+
+        private static System.Collections.IEnumerator DelayCoroutine(float delay, System.Action action)
+        {
+            yield return new WaitForSeconds(delay);
+            action();
+        }
+
+        public static void Delay(float delay, System.Action action, System.Action onEnd)
+        {
+            i.StartCoroutine(DelayCoroutine(delay, action, onEnd));
+        }
+
+        private static System.Collections.IEnumerator DelayCoroutine(float delay, System.Action action, System.Action onEnd)
+        {
+            yield return new WaitForSeconds(delay);
+            action();
+            onEnd();
+        }
+
+        public static void Delay(float delay, System.Action action, System.Action onEnd, System.Action onEnd2)
+        {
+            i.StartCoroutine(DelayCoroutine(delay, action, onEnd, onEnd2));
+        }
+
+        private static System.Collections.IEnumerator DelayCoroutine(float delay, System.Action action, System.Action onEnd, System.Action onEnd2)
+        {
+            yield return new WaitForSeconds(delay);
+            action();
+            onEnd();
+            onEnd2();
+        }
+
+        public static void Delay(float delay, System.Action action, System.Action onEnd, System.Action onEnd2, System.Action onEnd3)
+        {
+            i.StartCoroutine(DelayCoroutine(delay, action, onEnd, onEnd2, onEnd3));
+        }
+
+        private static System.Collections.IEnumerator DelayCoroutine(float delay, System.Action action, System.Action onEnd, System.Action onEnd2, System.Action onEnd3)
+        {
+            yield return new WaitForSeconds(delay);
+            action();
+            onEnd();
+            onEnd2();
+            onEnd3();
+        }
+        #endregion
     }
 }

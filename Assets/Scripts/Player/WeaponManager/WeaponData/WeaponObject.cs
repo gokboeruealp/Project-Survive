@@ -1,18 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponObject : MonoBehaviour
+[CreateAssetMenu(fileName = "New Weapon", menuName = "Weapon")]
+public class WeaponObject : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public string weaponName;
+    public int damage;
+    public float attackSpeed;
+    public float attackRange;
+    public float attackDelay;
+    public float attackDuration;
+    public float attackCooldown;
+    public float attackCooldownDuration;
+    public float attackCooldownDelay;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public GameObject weaponPrefab;
+    public GameObject attackEffect;
+
+    public Sprite weaponSprite;
+    public Sprite attackSprite;
+
+    public AudioClip attackSound;
 }
