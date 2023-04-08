@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace GokboerueTools
@@ -53,7 +54,7 @@ namespace GokboerueTools
             string path = UnityEditor.EditorUtility.SaveFilePanel("Save AssetData", "", AssetFileName, "cs");
             if (!string.IsNullOrEmpty(path))
             {
-                string assetData = "namespace GokboerueTools\n{\n\tinternal class AssetData\n\t{\n";
+                string assetData = "namespace GokboerueTools\n{\n\tpublic static class AssetData\n\t{\n";
 
                 foreach (PrefabAsset prefabAsset in prefabAssets)
                 {
