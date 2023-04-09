@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Node : MonoBehaviour
@@ -22,18 +23,16 @@ public class Node : MonoBehaviour
             neighbor.neighbours.Add(this);
         }
     }
-
-    private void Start()
-    {
-        Init();
-    }
-
+    
     public void Init()
     {
-        Invoke("DrawLines", 2f);
-        Invoke("ClearCrossedLines", 2f);
-        Invoke("DestroyPositionDuplicatedLines", 2f);
-        Invoke("RestructuringNeighbours", 2f);
+        for (int i = 0; i < neighbours.Count; i++)
+        {
+            if (neighbours == null) neighbours.Remove(neighbours[i]);
+        }
+        
+        DrawLines();
+        RestructuringNeighbours();
     }
 
     public void DrawLines()
@@ -48,6 +47,9 @@ public class Node : MonoBehaviour
             newLine.transform.SetParent(transform);
             lines.Add(line);
         }
+
+        ClearCrossedLines();
+        DestroyPositionDuplicatedLines();
     }
 
     public void ClearCrossedLines()

@@ -1,6 +1,9 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class ProceduralGeneration : MonoBehaviour
 {
@@ -14,9 +17,9 @@ public class ProceduralGeneration : MonoBehaviour
 
     private void Start()
     {
-        Invoke("GenerateNodes", 2f);
-        Invoke("GenerateConnections", 2f);
-        Invoke("CalculatePath", 2f);
+        GenerateNodes();
+        GenerateConnections();
+        CalculatePath();
     }
 
     private void GenerateNodes()
@@ -59,50 +62,50 @@ public class ProceduralGeneration : MonoBehaviour
 
     public void CalculatePath()
     {
-        // En düþük 4 düðümü ve en yüksek düðümü saklamak için bir dizi oluþturun.
         Node[] lowestNodes = new Node[4];
         Node highestNode = null;
+        List<Node> path = new List<Node>();
 
-        // PoissonDiscSampling kullanarak bir düðüm aðý oluþturun.
-
-        // Düðümleri y ekseninde sýralayýn.
         List<Node> sortedNodes = nodes.OrderBy(node => node.transform.position.y).ToList();
 
-        // En düþük 4 düðümü seçin.
         for (int i = 0; i < 4; i++)
         {
             lowestNodes[i] = sortedNodes[i];
         }
 
-        // En yüksek düðümü seçin.
         highestNode = sortedNodes[sortedNodes.Count - 1];
 
-        // Her bir en düþük düðümle en yüksek düðüm arasýnda yollar (path) oluþturun.
         foreach (Node lowestNode in lowestNodes)
         {
-            List<Node> path = CalculatePath(lowestNode, highestNode);
-
-            foreach (var node in path)
-            {
-                node.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.yellow;
-            }
+            path.AddRange(AStar.FindPath(lowestNode, highestNode));
         }
 
-        foreach (var lowestNode in lowestNodes)
+        foreach (var item in path)
         {
-            lowestNode.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.green;
+            item.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.yellow;
         }
 
-        highestNode.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.blue;
+        DestroyOtherNodes(lowestNodes, path, highestNode);
+
+        foreach (var node in nodes)
+        {
+            node.Init();
+        }
     }
 
-    // Ýki düðüm arasýndaki yolu hesaplamak için bir fonksiyon oluþturun.
-    List<Node> CalculatePath(Node startNode, Node endNode)
+    void DestroyOtherNodes(Node[] lowestNodes, List<Node> path, Node highestNode)
     {
-        // A* algoritmasýný kullanarak en kýsa yolun düðümlerini hesaplayýn.
-        List<Node> path = AStar.FindPath(startNode, endNode);
+        List<Node> notDestroyNodes = new List<Node>();
+        notDestroyNodes.AddRange(lowestNodes);
+        notDestroyNodes.AddRange(path);
+        notDestroyNodes.Add(highestNode);
 
-        // En kýsa yolun düðümlerini döndürün.
-        return path;
+        foreach (var node in nodes)
+        {
+            if (!notDestroyNodes.Contains(node))
+            {
+                Destroy(node.gameObject);
+            }
+        }
     }
 }
