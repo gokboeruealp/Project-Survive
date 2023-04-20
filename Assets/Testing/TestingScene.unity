@@ -452,9 +452,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2b02ef41c7c86e4b8bff92474b29b0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xCount: 500
-  yCount: 2000
-  startRoomCount: 7
+  xCount: 30
+  yCount: 50
+  startRoomCount: 4
   roads:
   - {fileID: 0}
   - {fileID: 0}
