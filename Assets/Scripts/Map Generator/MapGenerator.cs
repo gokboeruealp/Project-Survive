@@ -1,4 +1,3 @@
-using Gokboerue.MapGenerator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +18,6 @@ namespace GokboerueTools.MapGenerator
         [SerializeField] private GameObject roadObject;
         
         private List<MapObject> _mapObjects;
-
-        [SerializeField] private PlayerStepUpOnGeneratedMap playerStepUpOnGeneratedMap;
         #endregion
 
         #region Variable Getter Setter Methods
@@ -28,14 +25,17 @@ namespace GokboerueTools.MapGenerator
         {
             return _mapObjects;
         }
+
+        public List<MapObject> GetStartRooms()
+        {
+            return _mapObjects.Where(mapObject => mapObject._type == EMapObjectType.StartRoom).ToList();
+        }
         #endregion
 
         #region Unity Methods
         private void Start()
         {
             Generate();
-
-            playerStepUpOnGeneratedMap.gameObject.SetActive(true);
         }
         #endregion
 
@@ -47,6 +47,7 @@ namespace GokboerueTools.MapGenerator
             SelectStartRooms();
             SelectRoads();
             DestroyNoneRoom();
+            RemoveNullMapObjects();
         }
 
         private void ClearMap()
@@ -128,6 +129,9 @@ namespace GokboerueTools.MapGenerator
                         var previousRoomObject = _mapObjects.FirstOrDefault(x => x._gridNode.x == previousRoom.x && x._gridNode.y == previousRoom.y);
                         lineRenderer.SetPosition(0, previousRoomObject.transform.position);
                         lineRenderer.SetPosition(1, selectedRoom.transform.position);
+
+                        //AddConnectedMapObject
+                        previousRoomObject.AddConnectedMapObject(selectedRoom);
                     }
 
                     previousRoom = selectedRoom._gridNode;
@@ -179,6 +183,11 @@ namespace GokboerueTools.MapGenerator
             {
                 DestroyImmediate(noneRoom.gameObject);
             }
+        }
+
+        private void RemoveNullMapObjects()
+        {
+            _mapObjects.RemoveAll(x => x == null);
         }
         #endregion
 
