@@ -65,11 +65,6 @@ public class MapGenerator : MonoBehaviour
     {
         var startRooms = Gokboerue.GenerateRandomUniqeList(0, xCount, startRoomCount);
 
-        foreach (var item in startRooms)
-        {
-            Debug.Log(item);
-        }
-
         foreach (var startRoom in startRooms)
         {
             var startRoomObject = _mapObjects.Where(x => x._gridNode.y == 0).FirstOrDefault(x => x._gridNode.x == startRoom);
