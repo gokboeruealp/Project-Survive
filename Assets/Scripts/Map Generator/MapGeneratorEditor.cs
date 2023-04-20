@@ -1,23 +1,26 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(MapGenerator))]
-public class MapGeneratorEditor : Editor
+namespace GokboerueTools.MapGenerator
 {
-    public override void OnInspectorGUI()
+    [CustomEditor(typeof(MapGenerator))]
+    public class MapGeneratorEditor : Editor
     {
-        MapGenerator mapGen = (MapGenerator)target;
-
-        DrawDefaultInspector();
-
-        if (GUILayout.Button("Generate"))
+        public override void OnInspectorGUI()
         {
-            mapGen.DrawMapInEditor();
-        }
+            MapGenerator mapGen = (MapGenerator)target;
 
-        if (GUILayout.Button("Clear"))
-        {
-            mapGen.ClearMapInEditor();
+            DrawDefaultInspector();
+
+            if (GUILayout.Button("Generate"))
+            {
+                mapGen.DrawMapInEditor();
+            }
+
+            if (GUILayout.Button("Clear"))
+            {
+                mapGen.ClearMapInEditor();
+            }
         }
     }
 }
