@@ -1,25 +1,28 @@
 using System;
 using UnityEngine;
 
-[Serializable]
-public class GridNode
+namespace GokboerueTools.MapGenerator
 {
-    public int x;
-    public int y;
-
-    public GridNode(int x, int y)
+    [Serializable]
+    public class GridNode
     {
-        this.x = x;
-        this.y = y;
-    }
+        public int x;
+        public int y;
 
-    public Vector2 ToVector2()
-    {
-        return new Vector2(x, y);
-    }
+        public GridNode(int x, int y)
+        {
+            this.x = x;
+            this.y = y;
+        }
 
-    public Vector3 ToVector3()
-    {
-        return new Vector3(x, y, 0);
+        public Vector2 ToVector2()
+        {
+            return new Vector2(x, y);
+        }
+
+        public Vector3 ToVector3()
+        {
+            return new Vector3(x, y, 0);
+        }
     }
 }

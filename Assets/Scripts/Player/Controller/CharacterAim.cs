@@ -22,19 +22,19 @@ public class CharacterAim : MonoBehaviour
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(firePoint.up * 5f, ForceMode2D.Impulse);
 
-        Gokboerue.GetGameManager();
+        GokboerueTools.Gokboerue.GetGameManager();
     }
 
     private void OnLook()
     {
-        if (Gokboerue.IsExistEnemy())
+        if (GokboerueTools.Gokboerue.IsExistEnemy())
         {
-            Enemy nearestEnemy = Gokboerue.CalculateNearestEnemy(transform);
+            Enemy nearestEnemy = GokboerueTools.Gokboerue.CalculateNearestEnemy(transform);
             transform.rotation = RotatePlayerHelper(nearestEnemy.transform.position);
         }
         else
         {
-            transform.rotation = RotatePlayerHelper(Gokboerue.G_GetMousePosition());
+            transform.rotation = RotatePlayerHelper(GokboerueTools.Gokboerue.G_GetMousePosition());
         }
     }
     #endregion

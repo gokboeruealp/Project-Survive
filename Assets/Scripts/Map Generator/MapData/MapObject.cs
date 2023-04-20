@@ -1,13 +1,16 @@
 using UnityEngine;
 
-public class MapObject : MonoBehaviour
+namespace GokboerueTools.MapGenerator
 {
-    public EMapObjectType _type;
-    public GridNode _gridNode;
-
-    public MapObject(EMapObjectType type, GridNode gridNode)
+    public class MapObject : MonoBehaviour
     {
-        _type = type;
-        _gridNode = gridNode;
+        public EMapObjectType _type;
+        public GridNode _gridNode;
+
+        public MapObject(EMapObjectType type, GridNode gridNode)
+        {
+            _type = type;
+            _gridNode = gridNode;
+        }
     }
 }

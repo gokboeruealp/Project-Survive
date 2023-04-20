@@ -1,8 +1,11 @@
-public enum EMapObjectType
+namespace GokboerueTools.MapGenerator
 {
-    None,
-    StartRoom,
-    Room,
-    Road,
-    Boss
+    public enum EMapObjectType
+    {
+        None,
+        StartRoom,
+        Room,
+        Road,
+        Boss
+    }
 }
