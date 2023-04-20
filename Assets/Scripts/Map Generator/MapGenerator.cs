@@ -1,14 +1,15 @@
 using GokboerueTools;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
-    [SerializeField] private int xCount = 30;
-    [SerializeField] private int yCount = 70;
+    [SerializeField] private int xCount = 10;
+    [SerializeField] private int yCount = 30;
 
-    [Range(10, 60)][SerializeField] private int startRoomCount = 4;
+    [Range(1, 7)][SerializeField] private int startRoomCount = 4;
 
     [SerializeField] private List<MapObject> roads;
     [SerializeField] private MapObject boss;
@@ -27,7 +28,6 @@ public class MapGenerator : MonoBehaviour
     {
         ClearMap();
         CreateRooms();
-        SetPositionRandomRoomsDotFive();
         SelectStartRooms();
         SelectBossRoom();
         SelectRoads();
@@ -61,17 +61,14 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
-    private void SetPositionRandomRoomsDotFive()
-    {
-        foreach (var mapObject in _mapObjects)
-        {
-            mapObject.transform.position = new Vector2(mapObject._gridNode.x + Random.Range(-0.3f, 0.3f), mapObject._gridNode.y + Random.Range(-0.3f, 0.3f));
-        }
-    }
-
     private void SelectStartRooms()
     {
         var startRooms = Gokboerue.GenerateRandomUniqeList(0, xCount, startRoomCount);
+
+        foreach (var item in startRooms)
+        {
+            Debug.Log(item);
+        }
 
         foreach (var startRoom in startRooms)
         {
@@ -81,11 +78,14 @@ public class MapGenerator : MonoBehaviour
             startRoomObject.GetComponent<MapObject>()._type = EMapObjectType.StartRoom;
             startRoomObject.GetComponent<SpriteRenderer>().color = Color.red;
         }
-    }
 
+
+        
+    }
+    
     private void SelectBossRoom()
     {
-        var bossRoom = Random.Range(0, xCount);
+        var bossRoom = UnityEngine.Random.Range(0, xCount);
 
         var bossRoomObject = _mapObjects.Where(x => x._gridNode.y == yCount - 1).FirstOrDefault(x => x._gridNode.x == bossRoom);
         bossRoomObject.name = $"{EMapObjectType.Boss}:{bossRoomObject._gridNode.x}:{bossRoomObject._gridNode.y}";
