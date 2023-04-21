@@ -67,9 +67,10 @@ namespace GokboerueTools.MapGenerator
             {
                 for (int x = 0; x < xCount; x++)
                 {
-                    MapObject mapObject = new MapObject(EMapObjectType.None, new GridNode(x, y));
-                    var emptyGameObject = Instantiate(emptyRoomObject, new Vector2(mapObject._gridNode.x, mapObject._gridNode.y), Quaternion.identity, transform);
-                    emptyGameObject.GetComponent<MapObject>()._gridNode = mapObject._gridNode;
+                    var emptyGameObject = Instantiate(emptyRoomObject, new Vector2(x, y), Quaternion.identity, transform);
+                    MapObject mapObject = emptyGameObject.GetComponent<MapObject>();
+                    mapObject._gridNode = new GridNode(x, y);
+                    mapObject._type = EMapObjectType.None;
                     emptyGameObject.name = $"{mapObject._type}:{x}:{y}";
 
                     _mapObjects.Add(emptyGameObject.GetComponent<MapObject>());
