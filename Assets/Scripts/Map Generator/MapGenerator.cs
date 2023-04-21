@@ -201,15 +201,5 @@ namespace GokboerueTools.MapGenerator
             ClearMap();
         }
         #endregion
-
-        #region Test
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Generate();
-            }
-        }
-        #endregion
     }
 }
