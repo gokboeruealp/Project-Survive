@@ -474,7 +474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77c88b48da41cb748995b27487eba0ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mapGenerator: {fileID: 1955048160}
+  mapGenerator: {fileID: 1955048160}
   currentMapObject: {fileID: 0}
 --- !u!212 &1527372366
 SpriteRenderer:
@@ -698,9 +698,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2b02ef41c7c86e4b8bff92474b29b0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xCount: 10
-  yCount: 30
-  startRoomCount: 4
+  xCount: 30
+  yCount: 100
+  startRoomCount: 7
   emptyRoomObject: {fileID: 4646455908391216579, guid: b6202d084dafcc746821bc766a1b0ada, type: 3}
   roadObject: {fileID: 1843252110834948998, guid: 7c85b5700d4621042a710f32c1af78a6, type: 3}
 --- !u!4 &1955048161

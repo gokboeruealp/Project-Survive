@@ -8,4 +8,11 @@ namespace GokboerueTools.MapGenerator
         Road,
         Boss
     }
+
+    public enum EMapMoveableObjectType
+    {
+        None,
+        Moveable,
+        Passed
+    }
 }

@@ -130,7 +130,6 @@ namespace GokboerueTools.MapGenerator
                         lineRenderer.SetPosition(0, previousRoomObject.transform.position);
                         lineRenderer.SetPosition(1, selectedRoom.transform.position);
 
-                        //AddConnectedMapObject
                         previousRoomObject.AddConnectedMapObject(selectedRoom);
                     }
 

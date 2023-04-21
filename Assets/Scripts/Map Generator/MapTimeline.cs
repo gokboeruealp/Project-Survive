@@ -66,6 +66,10 @@ namespace GokboerueTools.MapGenerator
         {
             return (GetRightLeftMapObjectX(true) - GetRightLeftMapObjectX(false)) / 2;
         }
+        private float GetMiddleMapObjectY()
+        {
+            return (GetTopBotmostMapObjectY(true) - GetTopBotmostMapObjectY(false)) / 2;
+        }
 
         private void Start()
         {
@@ -75,6 +79,9 @@ namespace GokboerueTools.MapGenerator
         void CameraTimeline()
         {
             mainCamera = GameObject.Find("Main Camera");
+
+            mainCamera.transform.position = new Vector3(GetMiddleMapObjectX(), mainCamera.transform.position.y, mainCamera.transform.position.z);
+
             var returnPos = mainCamera.transform.position;
 
             mainCamera.transform.DOMove(new Vector3(GetMiddleMapObjectX(), GetTopBotmostMapObjectY(true), -10), 3);
