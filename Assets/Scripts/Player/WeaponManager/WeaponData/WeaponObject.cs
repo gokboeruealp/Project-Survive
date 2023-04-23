@@ -1,23 +1,10 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Weapon", menuName = "Weapon")]
-public class WeaponObject : ScriptableObject
+public abstract class WeaponObject : ScriptableObject
 {
-    public string weaponName;
-    public int damage;
-    public float attackSpeed;
-    public float attackRange;
-    public float attackDelay;
-    public float attackDuration;
-    public float attackCooldown;
-    public float attackCooldownDuration;
-    public float attackCooldownDelay;
-
-    public GameObject weaponPrefab;
-    public GameObject attackEffect;
-
-    public Sprite weaponSprite;
-    public Sprite attackSprite;
-
-    public AudioClip attackSound;
+    [SerializeField] public WeaponStats weaponStats;
+    public WeaponStats WeaponStats { get { return weaponStats; } }
+    public abstract void Attack();
+    public abstract void Attack(GameObject weapon);
+    public abstract void Attack(GameObject weapon, GameObject player);
 }
