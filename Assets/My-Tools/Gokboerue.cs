@@ -175,5 +175,37 @@ namespace GokboerueTools
             return list;
         }
         #endregion
+
+        #region Bezier Curve
+        public static Vector3 GetBezierPoint(Vector3[] points, float t)
+        {
+            Vector3 p = Vector3.zero;
+
+            for (int i = 0; i < points.Length; i++)
+            {
+                p += Mathf.Pow(1 - t, points.Length - i - 1) * Mathf.Pow(t, i) * GetBinomialCoefficient(points.Length - 1, i) * points[i];
+            }
+
+            return p;
+        }
+
+        static int GetBinomialCoefficient(int n, int k)
+        {
+            int ret = 1;
+
+            if (k > n - k)
+            {
+                k = n - k;
+            }
+
+            for (int i = 1; i <= k; i++)
+            {
+                ret *= n - k + i;
+                ret /= i;
+            }
+
+            return ret;
+        }
+        #endregion
     }
 }
